@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Flairé Landing Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* Header */
+        header {
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Search Bar */
+        .search-bar {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-bar input {
+            padding: 8px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+        }
+
+        .search-bar button {
+            padding: 8px 12px;
+            margin-left: 8px;
+            font-size: 16px;
+            background-color: #ff4d4d;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-image: url('https://i.pinimg.com/564x/3d/e6/be/3de6be04b767e2aa0299e9b5deb5e1fd.jpg'); /* Gambar Hero */
+            background-size: cover;
+            background-position: center;
+            height: 90vh;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 50px;
+            margin: 0;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin: 20px 0;
+        }
+
+        .hero button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #ff4d4d;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Produk Section */
+        .products {
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .products h2 {
+            font-size: 36px;
+            margin-bottom: 40px;
+        }
+
+        .product-list {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .product {
+            margin: 15px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            width: 300px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .product img {
+            width: 100%;
+            height: auto;
+        }
+
+        .product-details {
+            padding: 20px;
+        }
+
+        .product-details h3 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .product-details p {
+            margin: 10px 0;
+            color: #777;
+        }
+
+        .product-details .price {
+            font-size: 20px;
+            color: #000;
+        }
+
+        .product-details button {
+            padding: 10px 20px;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+
+/* About Us Section */
+#about {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 50px 20px;
+            background-color: #f8f8f8;
+        }
+
+        .about-text {
+            width: 50%;
+        }
+
+        .about-image {
+            width: 30%;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #000;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            margin: 20px 0 0 0;
+        }
+
+        footer ul li {
+            margin: 0 15px;
+        }
+
+        footer ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>Flairé</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Produk</a></li>
+                <li><a href="#about">Tentang Kami</a></li>
+                <li><a href="#contact">Kontak</a></li>
+            </ul>
+        </nav>
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <input type="text" placeholder="Cari produk...">
+            <button>Cari</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>Temukan Gaya Terbaik Anda</h1>
+        <p>Koleksi fashion terbaru dan eksklusif untuk setiap kesempatan.</p>
+        <button>Shop Now</button>
+    </section>
+    <!-- About Us Section -->
+    <section id="about">
+        <div class="about-text">
+            <h2>About Us</h2>
+            <p>Di Flairé, kami percaya bahwa setiap potongan pakaian lebih dari sekadar item fashion—ini adalah pernyataan pribadi yang menceritakan kisah Anda. Dengan penggabungan kecanggihan klasik dan tren kontemporer, kami menciptakan koleksi yang tidak hanya memenuhi kebutuhan gaya tetapi juga mengangkat semangat dan kepercayaan diri pemakainya. Setiap desain Flairé dibuat dengan hati-hati menggunakan bahan berkualitas tinggi untuk memastikan kenyamanan tanpa mengorbankan gaya. Apakah Anda sedang mencari sesuatu untuk kesempatan khusus atau penambah gaya sehari-hari, Flairé siap membawa keanggunan tak terbatas ke dalam lemari pakaian Anda.
+
+                Mari berjalan bersama Flairé, dan biarkan setiap langkah Anda memancarkan keanggunan yang luar biasa.</p>
+        </div>
+        <div class="about-image">
+            <img src="https://i.pinimg.com/564x/90/be/73/90be733678abd8d3e71f00dc344de8d0.jpg" alt="Model Fashion">
+        </div>
+    </section>
+
+    <!-- Produk Section -->
+    <section class="products" id="products">
+        <h2>Produk Unggulan</h2>
+        <div class="product-list">
+            <!-- Produk 1 -->
+            <div class="product">
+                <img src="https://i.pinimg.com/564x/ea/70/34/ea70345a7a33db798e23a86f946515c4.jpg" alt="Produk 1">
+                <div class="product-details">
+                    <h3>Linen Skirt</h3>
+                    <p>Koleksi eksklusif untuk penampilan yang mempesona.</p>
+                    <span class="price">Rp 1.500.000</span>
+                    <button>Detail Produk</button>
+                </div>
+            </div>
+            
+            <!-- Produk 2 -->
+            <div class="product">
+                <img src="https://i.pinimg.com/736x/a5/c0/2a/a5c02a8708da9f8bd2fb1bf2a904bee2.jpg" alt="Produk 2">
+                <div class="product-details">
+                    <h3>Cotton White Shirt</h3>
+                    <p>Desain klasik yang cocok untuk segala acara.</p>
+                    <span class="price">Rp 750.000</span>
+                    <button>Detail Produk</button>
+                </div>
+            </div>
+            
+            <!-- Produk 3 -->
+            <div class="product">
+                <img src="https://i.pinimg.com/736x/b8/6b/d5/b86bd5086e681efcf69bca6c7379b9b3.jpg" alt="Produk 3">
+                <div class="product-details">
+                    <h3>Loose Pants</h3>
+                    <p>Celana berkualitas dengan sentuhan klasik.</p>
+                    <span class="price">Rp 1.200.000</span>
+                    <button>Detail Produk</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 Flairé Fashion Brand - All Rights Reserved</p>
+        <ul>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">Twitter</a></li>
+        </ul>
+    </footer>
+
+</body>
+</html>
