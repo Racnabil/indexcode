@@ -1,0 +1,139 @@
+1.menampilkan film dan aktor yang main
+ 
+SELECT f.title, GROUP_CONCAT(a.first_name, ' ', a.last_name SEPARATOR ', ') AS actors
+FROM actor a
+JOIN film_actor fa ON a.actor_id = fa.actor_id
+JOIN film f ON fa.film_id = f.film_id
+GROUP BY f.title;
+
+2.menampilkan aktor dan kategori yang dimainkan
+
+SELECT 
+    a.first_name,
+    a.last_name,
+    GROUP_CONCAT(DISTINCT c.name SEPARATOR ', ')
+FROM actor a
+JOIN film_actor fa ON a.actor_id = fa.actor_id
+JOIN film f ON fa.film_id = f.film_id
+JOIN film_category fc ON f.film_id = fc.film_id
+JOIN category c ON fc.category_id = c.category_id
+GROUP BY a.first_name, a.last_name;
+
+3.menampilkan pelanggan yg telat mengembalikan dvd
+SELECT 
+    CONCAT(customer.first_name, ' ', customer.last_name) AS customer_name,
+    customer.email,
+    film.title AS dvd_title,
+    rental.return_date,
+    rental.rental_date + INTERVAL film.rental_duration DAY AS due_date
+FROM customer
+JOIN rental ON customer.customer_id = rental.customer_id
+JOIN inventory ON rental.inventory_id = inventory.inventory_id
+JOIN film ON inventory.film_id = film.film_id
+WHERE rental.return_date > (rental.rental_date + INTERVAL film.rental_duration DAY);
+
+4.Berapa banyak salinan DVD film berjudul 'HUNCHBACK IMPOSSIBLE' yang sudah dikembalikan?
+
+SELECT 
+    f.title, 
+    COUNT(DISTINCT r.inventory_id)
+FROM rental r
+JOIN inventory b ON r.inventory_id = b.inventory_id
+JOIN film f ON b.film_id = f.film_id
+WHERE 
+    f.title = 'HUNCHBACK IMPOSSIBLE' 
+    AND r.inventory_id NOT IN (
+        SELECT inventory_id 
+        FROM rental 
+        WHERE return_date IS NULL
+    );
+
+5.Menampilkan daftar film beserta jumlah berapa kali film itu pernah disewa, diurutkan dari yang paling sering disewa
+
+SELECT f.title, COUNT(r.inventory_id) AS banyakdisewa
+FROM rental r
+JOIN inventory i ON r.inventory_id = i.inventory_id
+JOIN film f ON i.film_id = f.film_id
+GROUP BY f.title
+ORDER BY banyakdisewa DESC;
+
+ 6. Mengetahui berapa banyak uang yang dibayarkan oleh masing-masing pelanggan ke toko rental DVD 
+
+SELECT 
+    CONCAT(c.first_name, ' ', c.last_name) AS cust_name,
+    SUM(p.amount) AS total_payment
+FROM customer c
+JOIN payment p ON c.customer_id = p.customer_id
+GROUP BY c.customer_id
+ORDER BY c.last_name;
+
+7.Menampilkan nama-nama aktor yang bermain dalam film berjudul "Alone Trip
+
+SELECT a.first_name, a.last_name
+FROM actor a
+WHERE a.actor_id IN (
+    SELECT fa.actor_id
+    FROM film_actor fa
+    JOIN film f ON fa.film_id = f.film_id
+    WHERE f.title = 'Alone Trip'
+);
+
+8.procedure add film
+DELIMITER //
+
+CREATE PROCEDURE AddFilm(
+    IN title VARCHAR(800),
+    IN description TEXT,
+    IN release_year YEAR,
+    IN language_id TINYINT,
+    IN original_language_id TINYINT,
+    IN rental_duration TINYINT,
+    IN rental_rate DECIMAL(4,2),
+    IN length SMALLINT,
+    IN replacement_cost DECIMAL(5,2),
+    IN rating ENUM('G','PG','PG-13','R','NC-17'),
+    IN special_features SET('Trailers','Commentaries','Deleted Scenes','Behind the Scenes')
+)
+BEGIN
+    -- Simpan ID film yang baru dimasukkan
+    DECLARE new_film_id INT;
+
+    -- INSERT ke tabel film
+    INSERT INTO film (
+        title, description, release_year, language_id, original_language_id,
+        rental_duration, rental_rate, length, replacement_cost, rating, special_features
+    ) VALUES (
+        title, description, release_year, language_id, original_language_id,
+        rental_duration, rental_rate, length, replacement_cost, rating, special_features
+    );
+
+    -- Ambil ID film terakhir yang dimasukkan
+    SET new_film_id = LAST_INSERT_ID();
+
+    -- INSERT tambahan ke tabel log
+    INSERT INTO film_log (film_id, title, action, action_date)
+    VALUES (new_film_id, title, 'INSERT', NOW());
+END //
+
+DELIMITER ;
+
+9.
+DELIMITER $$
+
+CREATE PROCEDURE dela(IN input_actor_id INT)
+BEGIN
+    DELETE FROM film_actor WHERE actor_id = input_actor_id;
+    DELETE FROM actor WHERE actor_id = input_actor_id;
+END$$
+
+DELIMITER ;
+10.CREATE VIEW view AS
+SELECT 
+    st.first_name, 
+    st.last_name, 
+    st.address_id, 
+    stor.store_id
+FROM staff st
+JOIN store stor ON stor.store_id = st.store_id;
+
+
